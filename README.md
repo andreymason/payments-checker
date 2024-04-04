@@ -2,6 +2,16 @@
 
 This Python script checks the accessibility of top payment services by sending requests to their respective URLs and parsing the responses. It utilizes Selenium for web scraping and HTTPX for making HTTP requests.
 
+## Basis of Checks
+
+The accessibility checks in this script are based on HTTP requests to the respective URLs of payment services. The script sends requests to DownDetector and SaasHub websites to retrieve information about the status of these services. Based on the responses received, it determines whether the payment services are accessible or not.
+
+The script utilizes the following sources for checking accessibility:
+- **DownDetector**: Provides real-time status updates and reports for various services, including payment platforms.
+- **SaasHub**: Aggregates information about software-as-a-service (SaaS) products, including payment services, and provides status updates.
+
+These sources are queried to gather data about the availability of payment services across different regions. The script then processes this information to determine whether each service is accessible or not.
+
 ## Installation
 
 1. **Download and install ChromeDriver:**
@@ -31,6 +41,16 @@ This Python script checks the accessibility of top payment services by sending r
    ```bash
    pip install -r requirements.txt
    ```
+
+## Environment Configuration
+
+Before running the script, you need to set up a `.env` file to store environment variables, such as `CHROMEDRIVER_PATH`, which specifies the path to the ChromeDriver executable.
+
+Create a `.env` file in the root directory of the project and add the following line:
+```plaintext
+CHROMEDRIVER_PATH=/path/to/chromedriver
+```
+Replace `/path/to/chromedriver` with the actual path to your ChromeDriver executable.
 
 ## Usage
 
