@@ -4,7 +4,7 @@ This Python script checks the accessibility of top payment services by sending r
 
 ## Basis of Checks
 
-The accessibility checks in this script are based on HTTP requests to the respective URLs of payment services. The script sends requests to DownDetector and SaasHub websites to retrieve information about the status of these services. Based on the responses received, it determines whether the payment services are accessible or not.
+The accessibility checks in this script are based on HTTP requests to the respective URLs of payment services. The script sends requests to [DownDetector](https://downdetector.com/) and [SaasHub](https://www.saashub.com/) websites to retrieve information about the status of these services. Based on the responses received, it determines whether the payment services are accessible or not.
 
 The script utilizes the following sources for checking accessibility:
 - **DownDetector**: Provides real-time status updates and reports for various services, including payment platforms.
@@ -15,7 +15,7 @@ These sources are queried to gather data about the availability of payment servi
 ## Installation
 
 1. **Download and install ChromeDriver:**
-   - Visit [ChromeDriver download page](https://chromedriver.chromium.org/downloads).
+   - Visit [ChromeDriver download page](https://chromedriver.com/download#stable).
    - Download the latest version of ChromeDriver suitable for your operating system.
    - Unzip the downloaded file and move the `chromedriver` executable to the `/usr/local/bin` directory.
 
