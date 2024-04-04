@@ -26,13 +26,12 @@ class HttpPayment(PaymentChecker):
 
 class WebsitePaymentChecker(PaymentChecker):
 
-    def __init__(self):
-        self.browser = Chrome(os.environ["CHROMEDRIVER_PATH"])
-
     def check_accessibility(self) -> dict:
         all_countries_statuses = {}
 
         print(self.payment_method)
+
+        self.browser = Chrome(os.environ["CHROMEDRIVER_PATH"])
         
         for country, url in self.urls.items():
             html = self.browser.get_html(url)
@@ -54,7 +53,6 @@ class WebsitePaymentChecker(PaymentChecker):
 # https://downdetector.com/
 class DownDetector(WebsitePaymentChecker):
     def __init__(self, payment_method: str):
-        super().__init__()
         self.payment_method = payment_method
         self.urls = {country: url.format(payment_method) for country, url in DOWNDETECTOR_URLS.items()}
 
@@ -72,7 +70,6 @@ class DownDetector(WebsitePaymentChecker):
 # https://www.saashub.com/
 class SaasHub(WebsitePaymentChecker):
     def __init__(self, payment_method: str):
-        super().__init__()
         self.payment_method = payment_method
         self.urls = {
             "eu": f"https://www.saashub.com/{payment_method}-status"
@@ -110,6 +107,33 @@ revolut = DownDetector("revolut")
 coinbase = DownDetector("coinbase")
 binance = DownDetector("binance")
 
+objects = {
+    "jeton": jeton,
+    "perfectmoney_api": perfectmoney_api,
+    "sticpay": sticpay,
+    "muchbetter": muchbetter,
+    "pay4fun": pay4fun,
+    "payid": payid,
+    "n26": n26,
+    "paysafe": paysafe,
+    "qiwi": qiwi,
+    "paysafecard": paysafecard,
+    "perfectmoney": perfectmoney,
+    "neteller": neteller,
+    "skrill": skrill,
+    "bitpay": bitpay,
+    "coinspaid": coinspaid,
+    "visa": visa,
+    "mastercard": mastercard,
+    "apple_pay": apple_pay,
+    "paypal": paypal,
+    "trustly": trustly,
+    "klarna": klarna,
+    "revolut": revolut,
+    "coinbase": coinbase,
+    "binance": binance
+}
+
 # Формирование строки оповещения
 notification_message = ""
 
@@ -117,7 +141,7 @@ notification_message = ""
 for name, obj in objects.items():
     print(name)
     response = obj.check_accessibility()
-    print (obj)
+    print (response)
     
     # Обработка объектов типа DownDetector
     if isinstance(obj, DownDetector):
